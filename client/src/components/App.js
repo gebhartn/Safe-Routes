@@ -1,5 +1,5 @@
-import React from "react";
-import "./styles/App.css";
+import React from 'react';
+import 'normalize.css';
 
 const App = () => <div>Hello World</div>;
 
