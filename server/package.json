@@ -1,0 +1,9 @@
+{
+  "name": "Safe Routes Backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+	"scripts": {
+		"server": "nodemon src/index.js"
+	}
+}
