@@ -1,6 +1,18 @@
 import React from 'react';
-import 'normalize.css';
+import { Route } from 'react-router-dom';
+import { GlobalProvider as Provider } from '../contexts';
+import Layout from './Layout';
+import Landing from './Landing';
 
-const App = () => <div>Hello World</div>;
+import 'normalize.css';
+import '../styles/App.css';
+
+const App = () => (
+  <Layout>
+    <Provider>
+      <Route exact path="/" component={Landing} />
+    </Provider>
+  </Layout>
+);
 
 export default App;
