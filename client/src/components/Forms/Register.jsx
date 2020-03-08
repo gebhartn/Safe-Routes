@@ -2,13 +2,13 @@ import React from 'react';
 import validate from './validation';
 import { useForm } from '../../hooks';
 
-const Form = () => {
-  const login = () => {
-    console.log('login');
+const Register = () => {
+  const register = () => {
+    console.log('register');
   };
 
   const { values, handleChange, handleSubmit, errors } = useForm(
-    login,
+    register,
     validate
   );
 
@@ -18,7 +18,6 @@ const Form = () => {
         Email Address
         <input
           autoComplete="off"
-          className={`input ${errors.email && 'is-danger'}`}
           type="email"
           name="email"
           onChange={handleChange}
@@ -30,7 +29,6 @@ const Form = () => {
       <label htmlFor="password">
         Password
         <input
-          className={`input ${errors.password && 'is-danger'}`}
           type="password"
           name="password"
           onChange={handleChange}
@@ -39,9 +37,20 @@ const Form = () => {
         />
       </label>
       {errors.password && <p>{errors.password}</p>}
+      <label htmlFor="confirm">
+        Password
+        <input
+          type="password"
+          name="confirm"
+          onChange={handleChange}
+          value={values.confirm || ''}
+          required
+        />
+      </label>
+      {errors.confirm && <p>{errors.confirm}</p>}
       <button type="submit">Login</button>
     </form>
   );
 };
 
-export default Form;
+export default Register;

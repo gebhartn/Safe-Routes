@@ -19,5 +19,11 @@ export default values => {
     errors.password = 'Password is not strong enough';
   }
 
+  if (values.confirm) {
+    if (values.confirm !== values.password) {
+      errors.confirm = 'Passwords do not match';
+    }
+  }
+
   return errors;
 };
