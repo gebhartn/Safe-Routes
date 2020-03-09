@@ -1,1 +1,1 @@
-export { GlobalProvider, GlobalState } from './GlobalContext';
+export { GlobalProvider, GlobalState, GlobalDispatch } from './GlobalContext';
