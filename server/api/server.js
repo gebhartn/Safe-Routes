@@ -1,10 +1,11 @@
 const express = require("express");
+
 const apiRouter = require("./api-router");
-const apiMiddleware = require("./api-middleware");
+const middleware = require("./api-middleware");
 
 const app = express();
 
-applyMiddleware(app);
+middleware(app);
 
 app.use("/api", apiRouter);
 
