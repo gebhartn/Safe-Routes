@@ -1,16 +1,28 @@
 import React from 'react';
+import { submitRegister } from '../../services';
 import validate from './validation';
-import { useForm } from '../../hooks';
 
 const Register = () => {
-  const register = () => {
-    console.log('register');
+  const [errors, setErrors] = React.useState({});
+  const [values, setValues] = React.useState({});
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
 
-  const { values, handleChange, handleSubmit, errors } = useForm(
-    register,
-    validate
-  );
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const [list, count] = validate(values);
+
+    setErrors(list);
+
+    if (!count.length) {
+      const { email, password } = values;
+      await submitRegister({ email, password });
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -25,7 +37,7 @@ const Register = () => {
           required
         />
       </label>
-      {errors.email && <p className="help is-danger">{errors.email}</p>}
+      {errors.email && <p>{errors.email}</p>}
       <label htmlFor="password">
         Password
         <input

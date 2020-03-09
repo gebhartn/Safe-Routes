@@ -25,5 +25,7 @@ export default values => {
     }
   }
 
-  return errors;
+  const count = Object.keys(errors);
+
+  return [errors, count];
 };

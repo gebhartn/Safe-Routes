@@ -15,4 +15,5 @@ const Landing = () => (
     </Image>
   </Container>
 );
+
 export default Landing;

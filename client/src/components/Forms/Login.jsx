@@ -1,16 +1,22 @@
 import React from 'react';
-import validate from './validation';
-import { useForm } from '../../hooks';
+import { submitLogin } from '../../services';
 
 const Form = () => {
-  const login = () => {
-    console.log('login');
+  const [errors, setErrors] = React.useState({});
+  const [values, setValues] = React.useState({});
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
 
-  const { values, handleChange, handleSubmit, errors } = useForm(
-    login,
-    validate
-  );
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const { email, password } = values;
+    const result = await submitLogin({ email, password });
+    console.log(result);
+  };
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -18,7 +24,6 @@ const Form = () => {
         Email Address
         <input
           autoComplete="off"
-          className={`input ${errors.email && 'is-danger'}`}
           type="email"
           name="email"
           onChange={handleChange}
@@ -26,11 +31,10 @@ const Form = () => {
           required
         />
       </label>
-      {errors.email && <p className="help is-danger">{errors.email}</p>}
+      {errors.email && <p>{errors.email}</p>}
       <label htmlFor="password">
         Password
         <input
-          className={`input ${errors.password && 'is-danger'}`}
           type="password"
           name="password"
           onChange={handleChange}
